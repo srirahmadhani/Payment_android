@@ -54,7 +54,7 @@ public class AdapterTiket extends RecyclerView.Adapter<AdapterTiket.ListViewHold
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(context, ActivityScan.class);
-                    intent.putExtra("idWisata", model.getId());
+                    intent.putExtra("idTiket", model.getId());
                     intent.putExtra("hargaTiket", model.getHarga());
                     context.startActivity(intent);
                 }

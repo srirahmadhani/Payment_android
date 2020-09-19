@@ -23,6 +23,8 @@ import com.karumi.dexter.listener.single.PermissionListener;
 public class ActivityCamQr extends AppCompatActivity {
     private CodeScanner codeScanner;
     ImageView ivBgContent;
+    int hargaTiket;
+    String idTiket;
 
     private CodeScannerView scannerView;
 
@@ -30,6 +32,10 @@ public class ActivityCamQr extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cam_qr);
+        Intent intent = new Intent(getIntent());
+
+        hargaTiket = intent.getIntExtra("hargaTiket", 0);
+        idTiket = intent.getStringExtra("idTiket");
 
         ivBgContent = findViewById(R.id.ivBgContent);
         ivBgContent.bringToFront();
@@ -74,7 +80,9 @@ public class ActivityCamQr extends AppCompatActivity {
 
     private void showAlertDialog(String message) {
         Intent a = new Intent(ActivityCamQr.this, ActivityScan.class);
-        a.putExtra("id", message);
+        a.putExtra("idVisitor", message);
+        a.putExtra("hargaTiket", hargaTiket);
+        a.putExtra("idTiket", idTiket);
         startActivity(a);
     }
 }

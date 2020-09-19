@@ -23,10 +23,20 @@ PrefManager prefManager;
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bn_main);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
+        prefManager = new PrefManager(this);
+//        if (prefManager.getJenisUser().equalsIgnoreCase("1")){
+//            MenuItem item = bottomNavigationView.getMenu().findItem(R.id.history);
+//            item.setVisible(false);
+//        }else {
+//            MenuItem item = bottomNavigationView.getMenu().findItem(R.id.history);
+//            item.setVisible(true);
+//        }
+
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
         Fragment fragment = null;
          switch (menuItem.getItemId()){
              case R.id.home:

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -33,12 +34,21 @@ import java.util.List;
 public class Home extends Fragment {
     RecyclerView rvTiket;
     List<ModelTiket> tiket;
+    SwipeRefreshLayout swHome;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         AndroidNetworking.initialize(getContext());
+
+        swHome = view.findViewById(R.id.swHome);
+        swHome.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getTiket();
+            }
+        });
 
         rvTiket = view.findViewById(R.id.rvTiket);
         rvTiket.setHasFixedSize(true);
@@ -51,6 +61,7 @@ public class Home extends Fragment {
     }
 
     private void getTiket() {
+        swHome.setRefreshing(true);
         AndroidNetworking.get(ApiServer.get_tiket)
                 .setPriority(Priority.MEDIUM)
                 .build()
@@ -58,6 +69,7 @@ public class Home extends Fragment {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
+                            swHome.setRefreshing(false);
                             Log.d("sukses", "sukses :"+ response.getString("status"));
                             if (response.getString("status").equalsIgnoreCase("true")){
                                     JSONArray dataRespon = response.getJSONArray("data");
@@ -77,12 +89,14 @@ public class Home extends Fragment {
 
                         } catch (JSONException e) {
                             e.printStackTrace();
+                            swHome.setRefreshing(false);
                         }
 
                     }
 
                     @Override
                     public void onError(ANError anError) {
+                        swHome.setRefreshing(false);
                         Log.d("sukses", "sukses :"+ anError);
                     }
                 });

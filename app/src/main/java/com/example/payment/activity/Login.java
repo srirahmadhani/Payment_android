@@ -22,6 +22,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 public class Login extends AppCompatActivity {
     EditText edEmail, edPassword;
     Button  btnLogin;
@@ -64,6 +67,8 @@ public class Login extends AppCompatActivity {
                                     prefManager.setJenisUser(datalist.getString("level"));
                                     prefManager.setNamaUser(datalist.getString("name"));
                                     prefManager.setLoginStatus(true);
+                                    String id = datalist.getString("id");
+                                    getSaldo(id);
                                     finish();
 
                             }else {
@@ -83,6 +88,36 @@ public class Login extends AppCompatActivity {
                     @Override
                     public void onError(ANError anError) {
                         Log.d("error", "error :"+anError);
+                    }
+                });
+    }
+
+    private void getSaldo(String id) {
+        AndroidNetworking.get(ApiServer.get_profil+id)
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+//
+                            if (response.getString("status").equalsIgnoreCase("true")) {
+                                JSONObject data = response.getJSONObject("data");
+                                Locale locale = new Locale("in", "ID");
+                                final NumberFormat formatId = NumberFormat.getCurrencyInstance(locale);
+
+
+                                prefManager.setSaldoUser(formatId.format((double) data.getInt("saldo")));
+                                prefManager.setEmailUser(data.getString("email"));
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+
                     }
                 });
     }

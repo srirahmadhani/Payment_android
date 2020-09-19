@@ -1,55 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.ActivityScan">
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="@drawable/edtext"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="80dp"
-        android:layout_marginTop="20dp"
-        android:hint="Id User"
-        android:id="@+id/edIdUser"
-        android:paddingLeft="10dp"/>
-
-    <ImageView
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="20dp"
-        android:layout_alignParentRight="true"
-        android:src="@drawable/ic_center_focus_weak_black_24dp"
-        android:id="@+id/btnCam"
-        android:layout_marginRight="20dp"/>
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="@drawable/edtext"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="20dp"
-        android:hint="Jumlah Tiket"
-        android:id="@+id/edJmlUser"
-        android:layout_below="@+id/edIdUser"
-        android:paddingLeft="10dp"/>
-
-    <Button
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/edJmlUser"
+        android:background="@drawable/ic_imgto"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Scan Transaksi"
+            android:textColor="#fff"
+            android:layout_marginTop="28dp"
+            android:layout_marginLeft="20dp"
+            android:textStyle="bold"
+            android:textSize="20dp"/>
+
+    </RelativeLayout>
+
+
+    <EditText
+        android:id="@+id/edIdUser"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginRight="80dp"
+        android:background="@drawable/edtext"
+        android:hint="Id User"
+        android:paddingLeft="10dp" />
+
+    <ImageView
+        android:id="@+id/btnCam"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="200dp"
+        android:layout_marginRight="20dp"
+        android:src="@drawable/ic_center_focus_weak_black_24dp" />
+
+    <EditText
+        android:id="@+id/et_jml_beli"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/edIdUser"
+        android:layout_marginLeft="20dp"
+        android:inputType="number"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/edtext"
+        android:hint="Jumlah Tiket"
+        android:paddingLeft="10dp" />
+
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_jml_beli"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
         android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
         android:background="@color/satu"
-        android:id="@+id/btnSubmit"
         android:text="Submit"
-        android:textColor="#fff"/>
+        android:textColor="#fff" />
 
 
 </RelativeLayout>

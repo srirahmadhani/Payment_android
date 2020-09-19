@@ -53,6 +53,14 @@ public class PrefManager {
         return pref.getString("saldoUser", "");
     }
 
+    public void setEmailUser(String emailUser){
+        editor.putString("emailUser", emailUser);
+        editor.apply();
+    }
+    public String getEmailUser(){
+        return pref.getString("emailUser", "");
+    }
+
 
     public void setLoginStatus(boolean islogin){
         editor.putBoolean("login", islogin);

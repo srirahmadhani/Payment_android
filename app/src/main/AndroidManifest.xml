@@ -13,11 +13,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.ActivityCamQr"></activity>
+        <activity android:name=".activity.SplashScrean"></activity>
+        <activity android:name=".activity.ActivityRegist" />
+        <activity android:name=".activity.ActivityCamQr" />
         <activity android:name=".activity.ActivityScan" />
         <activity android:name=".activity.ActivityQr" />
         <activity android:name=".activity.Login" />
-        <activity android:name=".MainActivity"
+        <activity
+            android:name=".MainActivity"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
