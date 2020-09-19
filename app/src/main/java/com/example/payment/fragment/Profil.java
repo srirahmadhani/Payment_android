@@ -74,7 +74,7 @@ public class Profil extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent1 = new Intent(getContext(), ActivityRegist.class);
-                startActivity(intent1);
+                startActivity(intent1); 
             }
         });
         btnLogout = view.findViewById(R.id.btnLogout);
